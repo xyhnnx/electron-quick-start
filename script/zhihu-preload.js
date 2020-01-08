@@ -3,24 +3,27 @@
 const path = require('path')
 const os = require('os')
 const fs = require('fs'); // 引入fs模块
-const { BrowserWindow } = require('electron').remote
+const electron = require('electron')
 const puppeteer = require('puppeteer');
 const { ipcRenderer } = require('electron')
+const{makeDir} = require('./util')
 window.addEventListener('DOMContentLoaded', () => {
-  console.log('---setmesg---')
-  ipcRenderer.send('preload-js-msg', 'ping')
-  setTimeout(()=>{
-    
-  }, 5000)
+  ipcRenderer.send('preload-js-msg', 'DOMContentLoaded')
 });
 // 生产pdf的浏览器
 let browser
+// pdf 文件产出路径
+const outputDir = '/xyh-out-put/zhihu'
+makeDir(outputDir + '/html');
+makeDir(outputDir + '/pdf');
+// 生产pdf文件的数量
+const pdfCount = 100;
 
 window.onload = async ()=>{
+  let res = await getDirFile(`${outputDir}/pdf`);
+console.log(res);
   browser = await puppeteer.launch();
   generatePdf();
-  let res = await getDirFile('./out-test');
-  console.log(res);
 };
 
 async function timeOut(t) {
@@ -40,14 +43,29 @@ async function generatePdf () {
     let more =  e.getElementsByClassName('ContentItem-more');
     overCount ++
     if(more[0]) {
-      console.log(`${overCount}--${boxList.length}`)
+      console.log(`开始生成第${overCount}/${boxList.length}条`)
       more[0].click();
-      await timeOut(500);
-      let innerText = await dowItemToHtml(e, i);
-      console.log('click---'+i+'over;')
+      await timeOut(50);
+      try 
+      {
+         // 等待dom生成html
+        console.log('正在生成html文件');
+        let {filePath, fileName} = await DOMToHtml(e, i);
+        if(fs.existsSync(filePath)) {
+          // html转pdf
+          console.log('正在生成pdf文件');
+          await downloadPdf(filePath,`${outputDir}/pdf/`,`${fileName}`)
+        }
+      }finally {
+      }
       if(overCount === boxList.length) {
-        console.log('完成了；--');
+        let res = await getDirFile(`${outputDir}/pdf`);
+        console.log(`已生成${res.length}条pdf文件`);
         browser.close();
+        if(res.length <pdfCount) {
+          console.log('本页面生成pdf完毕。开始刷新页面 reload');
+          location.reload()
+        }
       }
     }
   }
@@ -61,22 +79,25 @@ function getDirFile (dir) {
   })
 }
 
-async function dowItemToHtml(box,key) {
+async function DOMToHtml(box,key) {
   let str1 = document.getElementsByTagName('head')[0].innerHTML;
   let str2 = box.outerHTML;
   let nameDom = box.getElementsByClassName('ContentItem-title')[0].getElementsByTagName('a')[0];
-  let name = nameDom.innerText + 'xxx' + nameDom.href.substr(nameDom.href.lastIndexOf('/')+1)
-  await writeFile(`./out-test/${name}.html`, str1+str2);
-  let p = path.join(__dirname, `out-test/${name}.html`)
-
-  await downloadPdf(p,`./out-test/`,`${name}`)
+  let name = nameDom.innerText + '__' + nameDom.href.substr(nameDom.href.lastIndexOf('/')+1);
+  // name = encodeURI(name);
+  name = name.replace(/\\/g,'')
+  console.log(name);
+  await writeFile(`${outputDir}/html/${name}.html`, str1+str2);
+  let p = path.join(__dirname.substring(0,2), `${outputDir}/html/${name}.html`)
   return new Promise((resolve)=>{
-    resolve(box.outerHTML)
+    resolve({
+      filePath: p,
+      fileName: name
+    });
   })
 };
 // html转pdf
 async function downloadPdf(url, path, name) {
-  await console.log('Save path: ' + path + name + '.pdf');
   const page = await browser.newPage();
   await page.setViewport({
       width: 200,
@@ -96,10 +117,11 @@ async function writeFile (url,data) {
 // 传递了追加参数 { 'flag': 'w' } console.log(path.join(__dirname, 'out-test/preload.js'))
   fs.writeFile(url, data, { 'flag': 'w',encoding:'utf-8' }, function(err) {
     if (err) {
-        throw err;
+        console.log(`文件写入失败-${err}`)
+        resolve(false);
     }
     console.log('写入文件成功');
-    resolve();
+    resolve(true);
     // 写入成功后读取测试
     // fs.readFile('./try4.txt', 'utf-8', function(err, data) {
     //     if (err) {
