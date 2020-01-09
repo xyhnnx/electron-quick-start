@@ -133,3 +133,6 @@ async function writeFile (url,data) {
   })
 }
 
+ipcRenderer.on('main-to-win-msg',(e,data)=>{
+  console.log(data);
+})

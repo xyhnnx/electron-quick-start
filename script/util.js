@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
+
 // 删除文件夹下的文件
 function delPath(path) {
     // 删除文件
