@@ -3,17 +3,18 @@
 const electron = require('electron');
 const {BrowserWindow,ipcMain} = require('electron')
 const path = require('path');
+const fetch = require('./fetch')
 ipcMain.on('baidu-preloadjs-msg', function (event,data) {
   console.log(`----baidu-preloadjs-msg----`)
   console.log(data)
 })
 setTimeout(()=>{
-  mainWindow.webContents.send('main-to-win-msg',{
-    data: '主进程主动给渲染进程的信息'
-  })
+  // mainWindow.webContents.send('main-to-win-msg',{
+  //   data: '主进程主动给渲染进程的信息'
+  // })
 },3000)
 let mainWindow;
-function createWindow () {
+async function createWindow () {
     // Create the browser window.
     mainWindow = new BrowserWindow({
       width: 1000,
@@ -31,7 +32,7 @@ function createWindow () {
     mainWindow.webContents.openDevTools ()
       // and load the index.html of the app.
     // mainWindow.loadFile('index.html')
-    mainWindow.loadURL('https://www.baidu.com')
+    await mainWindow.loadURL('https://www.baidu.com')
     // let view = new BrowserView()
     // mainWindow.setBrowserView(view)
     // view.setBounds({ x: 0, y: 0, width: 500, height: 500 })
@@ -50,8 +51,18 @@ function createWindow () {
       // when you should delete the corresponding element.
       mainWindow = null
     })
-
+    getSearchData('mm');
   }
+
+  async function getSearchData (search) {
+    let url = `https://image.baidu.com/search/acjson?tn=resultjson_com&ipn=rj&ct=201326592&is=&fp=result&queryWord=&cl=2&lm=&ie=utf-8&oe=utf-8&adpicid=&st=&z=&ic=&word=${search}&s=&se=&tab=&width=&height=&face=&istype=&qc=&nc=&fr=&cg=head&pn=&rn=&gsm=3c&1505874585547=`;
+    let res = await fetch({
+      url
+    })
+    console.log('----fetch---')
+    mainWindow.webContents.send('main-to-win-msg',res)
+  }
+
 
   module.exports = {
     createWindow,

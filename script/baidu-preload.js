@@ -7,27 +7,28 @@ const electron = require('electron')
 const { ipcRenderer } = require('electron')
 const{makeDir} = require('./util')
 const http = require("http"); 
+const fetch = require('./fetch')
+const request = require('request')
+
+
 window.addEventListener('DOMContentLoaded', () => {
 });
 // 生产pdf的浏览器
 let browser
-// pdf 文件产出路径
-const outputDir = '/xyh-out-put/baidu'
-
+// 文件产出路径
+const outputDir = '/xyh-out-put/baidu1'
+makeDir(outputDir);
 
 
 window.onload = async ()=>{
   console.log('baidu-preload.js')
   let search = '美女';
-  getSearchData(search)
+  // getSearchData(search)
 };
 
-async function getSearchData (search) {
-  let url = `http://image.baidu.com/search/acjson?tn=resultjson_com&ipn=rj&ct=201326592&is=&fp=result&queryWord=${search}&cl=2&lm=-1&ie=utf-8&oe=utf-8&adpicid=&st=&z=&ic=&word=%E5%A4%B4%E5%83%8F&s=&se=&tab=&width=&height=&face=&istype=&qc=&nc=&fr=&cg=head&pn=60&rn=30&gsm=3c&1505874585547=`;
-  // let res1 = await fetch(url);
-  console.log('----res')
-  http.request()
-}
+// async function getSearchData (search) {
+//   let url = `https://image.baidu.com/search/acjson?tn=resultjson_com&ipn=rj&ct=201326592&is=&fp=result&queryWord=search&cl=2&lm=-1&ie=utf-8&oe=utf-8&adpicid=&st=&z=&ic=&word=%E5%A4%B4%E5%83%8F&s=&se=&tab=&width=&height=&face=&istype=&qc=&nc=&fr=&cg=head&pn=60&rn=30&gsm=3c&1505874585547=`;
+// }
 
 async function timeOut(t) {
   return new Promise((resolve)=>{
@@ -49,8 +50,25 @@ function getDirFile (dir) {
 ipcRenderer.on('main-to-win-msg',(e,data)=>{
   console.log(`====main-to-win-msg===`);
   console.log(data);
+  if(data && data.data.length) {
+    downloadFile(data.data)
+  }
 })
-
+async function downloadFile (list) {
+  for(let i = 0;i<list.length;i++) {
+    console.log(list[i]);
+    let item = list[i];
+    let url = item.thumbURL;
+    
+    if(url) {
+      let imgType = url.substring(url.lastIndexOf('.')+ 1)
+      let stream = fs.createWriteStream(path.join(outputDir,`${1000+i}.${imgType}`));
+      request(url).pipe(stream).on('close',()=>{
+        console.log(`${url}--下载完毕`)
+      })
+    }
+  }
+}
 ipcRenderer.send('baidu-preloadjs-msg', '哈哈')
 
 
