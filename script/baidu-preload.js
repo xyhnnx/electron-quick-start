@@ -5,18 +5,18 @@ const os = require('os')
 const fs = require('fs'); // 引入fs模块
 const electron = require('electron')
 const { ipcRenderer } = require('electron')
-const{makeDir} = require('./util')
-const http = require("http"); 
+const{makeDir} = require('../common/util')
+const http = require("http");
 const fetch = require('./fetch')
 const request = require('request')
-
+const config = require('../common/config')
 
 window.addEventListener('DOMContentLoaded', () => {
 });
 // 生产pdf的浏览器
 let browser
 // 文件产出路径
-const outputDir = '/xyh-out-put/baidu1'
+const outputDir = `${config.outputDir}/baidu1`
 makeDir(outputDir);
 
 
@@ -59,7 +59,7 @@ async function downloadFile (list) {
     console.log(list[i]);
     let item = list[i];
     let url = item.thumbURL;
-    
+
     if(url) {
       let imgType = url.substring(url.lastIndexOf('.')+ 1)
       let stream = fs.createWriteStream(path.join(outputDir,`${1000+i}.${imgType}`));

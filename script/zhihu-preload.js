@@ -6,14 +6,15 @@ const fs = require('fs'); // 引入fs模块
 const electron = require('electron')
 const puppeteer = require('puppeteer');
 const { ipcRenderer } = require('electron')
-const{makeDir} = require('./util')
+const{makeDir} = require('../common/util')
+const config = require('../common/config')
 window.addEventListener('DOMContentLoaded', () => {
   ipcRenderer.send('preload-js-msg', 'DOMContentLoaded')
 });
 // 生产pdf的浏览器
 let browser
 // pdf 文件产出路径
-const outputDir = '/xyh-out-put/zhihu'
+const outputDir = `${config.outputDir}/zhihu`
 makeDir(outputDir + '/html');
 makeDir(outputDir + '/pdf');
 // 生产pdf文件的数量
@@ -46,7 +47,7 @@ async function generatePdf () {
       console.log(`开始生成第${overCount}/${boxList.length}条`)
       more[0].click();
       await timeOut(50);
-      try 
+      try
       {
          // 等待dom生成html
         console.log('正在生成html文件');

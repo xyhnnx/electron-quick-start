@@ -5,18 +5,20 @@ const os = require('os')
 const fs = require('fs'); // 引入fs模块
 const electron = require('electron')
 const { ipcRenderer } = require('electron')
-const { makeDir } = require('./util')
+const { makeDir } = require('../common/util')
 const http = require("http");
 const fetch = require('./fetch')
 const request = require('request')
-const { timeOut } = require('./util')
+const { timeOut } = require('../common/util')
+const config = require('../common/config')
+
 
 window.addEventListener('DOMContentLoaded', () => {
 });
 // 生产pdf的浏览器
 let browser
 // 文件产出路径
-const outputDir = '/xyh-out-put/baidu-img/'
+const outputDir = `${config.outputDir}/baidu-img/`
 makeDir(outputDir);
 
 let imgCount = 100
