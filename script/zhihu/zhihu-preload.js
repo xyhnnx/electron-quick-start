@@ -6,8 +6,8 @@ const fs = require('fs'); // 引入fs模块
 const electron = require('electron')
 const puppeteer = require('puppeteer');
 const { ipcRenderer } = require('electron')
-const{makeDir} = require('../common/util')
-const config = require('../common/config')
+const{makeDir} = require('../../common/util')
+const config = require('../../common/config')
 window.addEventListener('DOMContentLoaded', () => {
   ipcRenderer.send('preload-js-msg', 'DOMContentLoaded')
 });

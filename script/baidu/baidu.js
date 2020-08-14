@@ -1,7 +1,7 @@
 const electron = require('electron');
 const { BrowserWindow, ipcMain } = require('electron')
 const path = require('path');
-const fetch = require('./fetch')
+const fetch = require('../../common/fetch')
 ipcMain.on('baidu-preloadjs-msg', function (event, data) {
   console.log(`----baidu-preloadjs-msg----`)
   console.log(data)

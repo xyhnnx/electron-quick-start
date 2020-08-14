@@ -5,12 +5,12 @@ const os = require('os')
 const fs = require('fs'); // 引入fs模块
 const electron = require('electron')
 const { ipcRenderer } = require('electron')
-const { makeDir } = require('../common/util')
+const { makeDir } = require('../../common/util')
 const http = require("http");
-const fetch = require('./fetch')
+const fetch = require('../../common/fetch')
 const request = require('request')
-const { timeOut } = require('../common/util')
-const config = require('../common/config')
+const { timeOut } = require('../../common/util')
+const config = require('../../common/config')
 
 
 window.addEventListener('DOMContentLoaded', () => {
