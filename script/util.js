@@ -46,6 +46,25 @@ function makeDir(dirpath, delExists = false) {
     }
     return true;
   }
+
+
+async function timeOut(t) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, t)
+  })
+}
+
+// 获取文件夹所有文件名
+function getDirFile(dir) {
+  return new Promise((resolve) => {
+    fs.readdir(dir, function (err, files) {
+      resolve(files)
+    })
+  })
+}
   module.exports = {
-    makeDir
+    makeDir,
+    timeOut
   }
