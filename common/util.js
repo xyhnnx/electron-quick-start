@@ -96,7 +96,6 @@ function remoteJs (url, key) {
       }
     }
   }))
-
 }
 
 module.exports = {

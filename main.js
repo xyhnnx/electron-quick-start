@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow, Menu, BrowserView, shell} = require('electron')
+const {app, BrowserWindow, Menu, BrowserView, shell, globalShortcut } = require('electron')
 const path = require('path')
 const os = require('os')
 const {spawn} = require('child_process')
@@ -30,6 +30,12 @@ app.on('activate', function () {
   // On macOS it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
   if (mainWindow === null) createWindow()
+})
+
+app.whenReady().then(() => {
+  globalShortcut.register('CommandOrControl + p', () => {
+    console.log('CommandOrControl+X is pressed')
+  })
 })
 
 // In this file you can include the rest of your app's specific main process

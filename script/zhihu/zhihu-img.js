@@ -5,10 +5,12 @@ const fetch = require('../../common/fetch')
 let mainWindow;
 
 async function createWindow() {
+  const Menu = electron.Menu
+  Menu.setApplicationMenu(null)
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 1920,
-    height: 800,
+    width: '100%',
+    height: '100%',
     webPreferences: {
       devTools: true, //  Boolean (可选) - 是否开启 DevTools. 如果设置为 false, 则无法使用
       // Boolean (可选) - 是否集成Node，默认为false
