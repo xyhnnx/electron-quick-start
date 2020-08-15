@@ -109,9 +109,24 @@ window.onload = async () => {
     console.log('该页面不是回答详情页')
   }
 };
+window.addEventListener('keyup', (e => {
+  console.log(e)
+  if(e.key === 'F12') {
+    ipcRenderer.send('callFunction', {
+      functionName: 'toggleDevTools'
+    })
+  } else if(e.ctrlKey && e.key === 'o') {
+    let input = window.document.createElement('input')
+    input.placeholder = `请输入网址`
+    window.document.getElementsByTagName('html')[0].insertBefore(input, document.getElementsByTagName('body')[0])
+    input.onblur = () => {
+      window.location.href = input.value
+    }
+  }
+}), true)
 
 
-ipcRenderer.send('baidu-img-preloadjs-msg', '哈哈')
+
 
 
 

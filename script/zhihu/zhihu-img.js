@@ -6,11 +6,11 @@ let mainWindow;
 
 async function createWindow() {
   const Menu = electron.Menu
-  Menu.setApplicationMenu(null)
+  // Menu.setApplicationMenu(null)
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: '100%',
-    height: '100%',
+    width: 800,
+    height: 500,
     webPreferences: {
       devTools: true, //  Boolean (可选) - 是否开启 DevTools. 如果设置为 false, 则无法使用
       // Boolean (可选) - 是否集成Node，默认为false
@@ -20,8 +20,7 @@ async function createWindow() {
     }
   })
 
-  // 打开控制台
-  mainWindow.webContents.openDevTools()
+
   await mainWindow.loadURL(`https://www.zhihu.com/question/311387348/answer/1091144825`)
 
   // Emitted when the window is closed.
@@ -32,6 +31,13 @@ async function createWindow() {
     mainWindow = null
   })
 }
+
+ipcMain.on('callFunction', function (event, data) {
+  console.log(data.functionName)
+  if(data.functionName === 'toggleDevTools') {
+    mainWindow.webContents.openDevTools()
+  }
+})
 
 
 module.exports = {
