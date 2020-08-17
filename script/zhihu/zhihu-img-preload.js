@@ -27,7 +27,8 @@ function getAnswerItemInfo () {
   let questionFollowNum = document.getElementsByClassName('NumberBoard-itemValue')[0].getAttribute('title')
   let questionReadNum = document.getElementsByClassName('NumberBoard-itemValue')[1].getAttribute('title')
   let authorImg = $box.getElementsByClassName('AuthorInfo-avatar')[0].getAttribute('src')
-  let authorBadgeText = $box.getElementsByClassName('AuthorInfo-badgeText')[0].innerText
+  let $domBadgeText = $box.getElementsByClassName('AuthorInfo-badgeText')[0]
+  let authorBadgeText = $domBadgeText && $domBadgeText.innerText
   let answerImgList = []
   let imgDomlist = $box.getElementsByClassName('RichContent--unescapable')[0].getElementsByTagName('img')
   let editTimeText = $box.getElementsByClassName('ContentItem-time')[0].getElementsByTagName('span')[0].innerText
@@ -97,7 +98,8 @@ async function addAnswerImgToCloud () {
     alert('不满足添加条件')
   }
 }
-window.onload = async () => {
+
+function addBtn () {
   if(window.location.href.includes('/answer/')) {
     // addAnswerImgToCloud()
     let btnBox = document.getElementsByClassName('QuestionButtonGroup')[0]
@@ -110,6 +112,10 @@ window.onload = async () => {
   } else {
     console.log('该页面不是回答详情页')
   }
+}
+window.onload = async () => {
+  console.log('onload')
+  addBtn()
 };
 window.addEventListener('keyup', (e => {
   console.log(e)
@@ -119,6 +125,7 @@ window.addEventListener('keyup', (e => {
     })
   } else if(e.ctrlKey && e.key === 'o') {
     let input = window.document.createElement('input')
+    input.style = 'position:fixed;z-index:10000;left:0;right:0;top:0;'
     input.placeholder = `请输入网址`
     window.document.getElementsByTagName('html')[0].insertBefore(input, document.getElementsByTagName('body')[0])
     input.onblur = () => {
