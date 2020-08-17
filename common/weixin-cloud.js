@@ -1,4 +1,4 @@
-const env = 'test-xyh'
+const env = 'test-xyh-zhitu'
 // 云函数入口文件
 let cloud;
 let db;
@@ -9,7 +9,7 @@ async function initFun () {
   cloud = window.cloud
   await cloud.init({
     env,
-    appid: 'wxdeca305114732d6e'
+    appid: 'wxe935513823b55267'
   })
   if(!db) {
     db = cloud.database({

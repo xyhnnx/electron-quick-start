@@ -30,6 +30,7 @@ function getAnswerItemInfo () {
   let authorBadgeText = $box.getElementsByClassName('AuthorInfo-badgeText')[0].innerText
   let answerImgList = []
   let imgDomlist = $box.getElementsByClassName('RichContent--unescapable')[0].getElementsByTagName('img')
+  let editTimeText = $box.getElementsByClassName('ContentItem-time')[0].getElementsByTagName('span')[0].innerText
 
   for(let i = 0;i<imgDomlist.length;i++) {
     let imgDomItem = imgDomlist[i]
@@ -50,6 +51,7 @@ function getAnswerItemInfo () {
     authorName,
     authorImg,
     authorBadgeText,
+    editTimeText
   }
   return saveData
 }
@@ -75,7 +77,7 @@ makeDir(outputDir);
 
 async function addAnswerImgToCloud () {
   let data = getAnswerItemInfo()
-  if(Object.keys(data).length === 10 && data.answerImgList.length>5) {
+  if(Object.keys(data).length === 11 && data.answerImgList.length>5) {
     let res = await addDataToCloud({
       dbName: 'zhihuImgAnswer',
       primaryKey: 'answerId',
