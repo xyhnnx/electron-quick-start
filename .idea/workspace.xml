@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c28e00aa-8788-4d55-9058-b5206cb2b569" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/script/zhihu/zhitu-script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/weixin-cloud.js" beforeDir="false" afterPath="$PROJECT_DIR$/common/weixin-cloud.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/zhihu/zhihu-img-preload.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/zhihu/zhihu-img-preload.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +19,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="570" />
@@ -29,7 +27,14 @@
     <option name="width" value="1485" />
     <option name="height" value="820" />
   </component>
+  <component name="ProjectId" id="1gFknLSTOg4ZykMTyxW0D1Q966D" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../xinzhi" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -75,6 +80,7 @@
       <workItem from="1586267893249" duration="20000" />
       <workItem from="1597373077051" duration="11797000" />
       <workItem from="1597474443951" duration="19037000" />
+      <workItem from="1597717896340" duration="1201000" />
     </task>
     <task id="LOCAL-00001" summary="知乎">
       <created>1577896268295</created>
@@ -118,7 +124,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597495649923</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="添加 edittime">
+      <created>1597659874618</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1597659874618</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,16 +168,26 @@
     <MESSAGE value="添加数据到微信云cloud" />
     <MESSAGE value="zhihu" />
     <MESSAGE value="merge" />
-    <option name="LAST_COMMIT_MESSAGE" value="merge" />
+    <MESSAGE value="添加 time" />
+    <MESSAGE value="添加 edittime" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加 edittime" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2492" y="118" key="CommitChangelistDialog2" timestamp="1597628306821">
+    <state x="2492" y="118" key="CommitChangelistDialog2" timestamp="1597659873565">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2492" y="118" key="CommitChangelistDialog2/0.0.1857.1080/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597628306821" />
+    <state x="2492" y="118" key="CommitChangelistDialog2/0.0.1857.1080/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597659873565" />
     <state x="2129" y="76" key="DiffContextDialog" timestamp="1597628289941">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2129" y="76" key="DiffContextDialog/0.0.1857.1080/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597628289941" />
+    <state x="2472" y="256" key="Vcs.Push.Dialog.v2" timestamp="1597659876938">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2472" y="256" key="Vcs.Push.Dialog.v2/0.0.1857.1080/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597659876938" />
+    <state x="2674" y="438" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1597717901386">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2674" y="438" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1857.1080/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597717901386" />
   </component>
 </project>
