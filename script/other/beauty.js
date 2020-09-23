@@ -30,21 +30,16 @@ async function createWindow() {
         mainWindow = null
     })
 }
+
 function saveImgBase64Data (base_64_url) {
     var fs = require("fs");  // 引入fs模块
-    makeDir(path.join(config.outputDir, `美女`))
-    var distPath = path.join(config.outputDir, `美女/${Date.now()}.png`)
+    makeDir(`${config.outputDir}/美女`)
+    var distPath = `${config.outputDir}/美女/${Date.now()}.png`
     var base64 = base_64_url.replace(/^data:image\/\w+;base64,/, ""); //去掉图片base64码前面部分data:image/png;base64
-    var dataBuffer = Buffer.alloc(base64, 'base64'); //把base64码转成buffer对象，
+    var dataBuffer = Buffer.from(base64, 'base64'); //把base64码转成buffer对象，
     console.log(distPath)
-    fs.writeFile(distPath,dataBuffer,function(err){//用fs写入文件
-        if(err){
-            console.log('写入失敗', err);
-        }else{
-            console.log('写入成功！');
-        }
-    });
-
+    let res = fs.writeFileSync(distPath,dataBuffer);
+    console.log(res)
 }
 
 ipcMain.on('callFunction', function (event, data) {
