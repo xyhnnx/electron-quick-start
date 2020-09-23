@@ -1,0 +1,145 @@
+<!-- app/view/news/list.tpl -->
+<html>
+<head>
+  <title>美女图片</title>
+</head>
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+  }
+  ul {
+    list-style: none;
+  }
+  .news-view {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 0px;
+  }
+  .item{
+    position: relative;
+  }
+  img{
+    width: 100%;
+    display: block;
+  }
+  .title{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: right;
+    color: #fff;
+    z-index: 1;
+  }
+</style>
+<body>
+<ul class="news-view view" id="box">
+
+</ul>
+<script>
+  function dateFormat (time, format) {
+    if (!time) {
+      return
+    }
+    if (!format) {
+      return time
+    }
+    const usedDate = new Date(time)
+    const o = {
+      // 月份
+      'M+': usedDate.getMonth() + 1,
+      // 日
+      'd+': usedDate.getDate(),
+      // 小时
+      'h+': usedDate.getHours(),
+      // 分
+      'm+': usedDate.getMinutes(),
+      // 秒
+      's+': usedDate.getSeconds(),
+      // 季度
+      'q+': Math.floor((usedDate.getMonth() + 3) / 3),
+      // 毫秒
+      S: usedDate.getMilliseconds()
+    }
+
+    if (/(y+)/.test(format)) {
+      format = format.replace(RegExp.$1, (usedDate.getFullYear() + '').substr(4 - RegExp.$1.length))
+    }
+
+    for (const k in o) {
+      if (new RegExp('(' + k + ')').test(format)) {
+        format = format.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)))
+      }
+    }
+    return format
+  }
+
+  function getBase64Image(img) {
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, img.width, img.height);
+    var dataURL = canvas.toDataURL('image/png');
+    return dataURL;
+  }
+  const addImg = async () => {
+    // 浏览器
+    // 渲染URL
+    const prefix = `https://6d65-me-oacid-1300610701.tcb.qcloud.la`;
+    let stop = false;
+    let nowTime = new Date().getTime();
+    let arr = []
+    // while (!stop) {
+    //     let timeStr = dateFormat(nowTime, 'yyyyMMdd')
+    //     arr.push({
+    //         src: `https://uploadbeta.com/api/pictures/random/?key=%E6%8E%A8%E5%A5%B3%E9%83%8E&t=${timeStr}`,
+    //         label: timeStr
+    //     })
+    //     nowTime = nowTime - (24 * 60 * 60 * 1000)
+    //     if (nowTime <= new Date('2018-01-01').getTime()) {
+    //         stop = true
+    //     }
+    // }
+    let count = 0
+    let loadImg = () => {
+      console.log(`count=${count}`)
+      let img = new Image()
+      img.setAttribute('crossOrigin', 'anonymous')
+      img.src = `https://uploadbeta.com/api/pictures/random/?key=%E6%8E%A8%E5%A5%B3%E9%83%8E&t=${new Date().getTime()}`
+      img.onload = () => {
+        console.log('onload')
+        let base64 = getBase64Image(img)
+        arr.push({
+          src: base64
+        })
+        count ++
+        if(count <=10) {
+          loadImg()
+        } else{
+          let domArr = []
+          arr.forEach(item => {
+            domArr.push(`
+                        <li class="item">
+                            <img src="${item.src}"/>
+                            <p class="title">${item.label}</p>
+                        </li>
+                        `)
+          })
+          document.getElementById('box').innerHTML = domArr.join('');
+        }
+      }
+      img.onerror = () => {
+        loadImg()
+      }
+
+    }
+    loadImg()
+
+  }
+  addImg()
+</script>
+</body>
+
+</html>

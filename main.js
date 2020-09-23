@@ -1,19 +1,16 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow, Menu, BrowserView, shell, globalShortcut } = require('electron')
+const {app, ipcMain, BrowserWindow, Menu, BrowserView, shell, globalShortcut } = require('electron')
 const path = require('path')
 const os = require('os')
 const {spawn} = require('child_process')
-const { ipcMain } = require('electron')
 // const shell = electron.shell
 // 菜单
 // require('./script/main-menu');
 
-// spawn('www.exe',['D:\英雄联盟\TCLS'])
-
 // Menu.setApplicationMenu(null);
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let {createWindow, mainWindow} = require('./script/zhihu/zhihu-img')
+let {createWindow, mainWindow} = require('./script/other/beauty')
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
