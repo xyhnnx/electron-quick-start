@@ -31,20 +31,19 @@ async function createWindow() {
     })
 }
 
-function saveImgBase64Data (base_64_url) {
+function saveImgBase64Data (base_64_url, WH) {
     var fs = require("fs");  // 引入fs模块
     makeDir(`${config.outputDir}/美女`)
-    var distPath = `${config.outputDir}/美女/${Date.now()}.png`
+
     var base64 = base_64_url.replace(/^data:image\/\w+;base64,/, ""); //去掉图片base64码前面部分data:image/png;base64
     var dataBuffer = Buffer.from(base64, 'base64'); //把base64码转成buffer对象，
-    console.log(distPath)
+    var distPath = `${config.outputDir}/美女/${dataBuffer.length}-${WH}.png`
     let res = fs.writeFileSync(distPath,dataBuffer);
-    console.log(res)
 }
 
 ipcMain.on('callFunction', function (event, data) {
     if (data.name === 'base64') {
-       saveImgBase64Data(data.data)
+       saveImgBase64Data(data.data, data.WH)
     }
 })
 

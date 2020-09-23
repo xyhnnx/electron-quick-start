@@ -105,10 +105,11 @@
         const { ipcRenderer } = require('electron')
         ipcRenderer.send('callFunction', {
           name: 'base64',
-          data: base64
+          data: base64,
+          WH: `${img.width}x${img.height}`
         })
 
-        if(count <=2) {
+        if(count <=50000) {
           loadImg()
         } else {
           // let domArr = []
