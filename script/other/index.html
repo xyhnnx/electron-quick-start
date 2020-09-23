@@ -87,21 +87,7 @@
   const addImg = async () => {
     // 浏览器
     // 渲染URL
-    const prefix = `https://6d65-me-oacid-1300610701.tcb.qcloud.la`;
-    let stop = false;
-    let nowTime = new Date().getTime();
     let arr = []
-    // while (!stop) {
-    //     let timeStr = dateFormat(nowTime, 'yyyyMMdd')
-    //     arr.push({
-    //         src: `https://uploadbeta.com/api/pictures/random/?key=%E6%8E%A8%E5%A5%B3%E9%83%8E&t=${timeStr}`,
-    //         label: timeStr
-    //     })
-    //     nowTime = nowTime - (24 * 60 * 60 * 1000)
-    //     if (nowTime <= new Date('2018-01-01').getTime()) {
-    //         stop = true
-    //     }
-    // }
     let count = 0
     let loadImg = () => {
       console.log(`count=${count}`)
@@ -115,19 +101,26 @@
           src: base64
         })
         count ++
-        if(count <=10) {
+
+        const { ipcRenderer } = require('electron')
+        ipcRenderer.send('callFunction', {
+          name: 'base64',
+          data: base64
+        })
+
+        if(count <=2) {
           loadImg()
-        } else{
-          let domArr = []
-          arr.forEach(item => {
-            domArr.push(`
-                        <li class="item">
-                            <img src="${item.src}"/>
-                            <p class="title">${item.label}</p>
-                        </li>
-                        `)
-          })
-          document.getElementById('box').innerHTML = domArr.join('');
+        } else {
+          // let domArr = []
+          // arr.forEach(item => {
+          //   domArr.push(`
+          //               <li class="item">
+          //                   <img src="${item.src}"/>
+          //                   <p class="title">${item.label}</p>
+          //               </li>
+          //               `)
+          // })
+          // document.getElementById('box').innerHTML = domArr.join('');
         }
       }
       img.onerror = () => {

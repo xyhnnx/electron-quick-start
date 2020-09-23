@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c28e00aa-8788-4d55-9058-b5206cb2b569" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/script/zhihu/zhitu-script.js" afterDir="false" />
+    <list default="true" id="c28e00aa-8788-4d55-9058-b5206cb2b569" name="Default Changelist" comment="添加美女图片">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/other/beauty.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/other/beauty.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/other/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/script/other/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +37,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../xinzhi" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/script/other" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -47,6 +48,8 @@
       <recent name="D:\projectXyh\electron-quick-start\common" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\ProjectXyh\electron-quick-start\script\other" />
+      <recent name="D:\ProjectXyh\electron-quick-start\script\baidu" />
       <recent name="D:\projectXyh\electron-quick-start\script\zhihu" />
       <recent name="D:\projectXyh\electron-quick-start\script" />
     </key>
@@ -80,7 +83,10 @@
       <workItem from="1586267893249" duration="20000" />
       <workItem from="1597373077051" duration="11797000" />
       <workItem from="1597474443951" duration="19037000" />
-      <workItem from="1597717896340" duration="1201000" />
+      <workItem from="1597717896340" duration="3066000" />
+      <workItem from="1597991602299" duration="3546000" />
+      <workItem from="1600843647078" duration="4848000" />
+      <workItem from="1600854715627" duration="2080000" />
     </task>
     <task id="LOCAL-00001" summary="知乎">
       <created>1577896268295</created>
@@ -131,7 +137,21 @@
       <option name="project" value="LOCAL" />
       <updated>1597659874618</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="添加脚本文件">
+      <created>1597719140187</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1597719140187</updated>
+    </task>
+    <task id="LOCAL-00009" summary="添加美女图片">
+      <created>1600853123149</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1600853123149</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,24 +190,33 @@
     <MESSAGE value="merge" />
     <MESSAGE value="添加 time" />
     <MESSAGE value="添加 edittime" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加 edittime" />
+    <MESSAGE value="添加脚本文件" />
+    <MESSAGE value="添加美女图片" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加美女图片" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2492" y="118" key="CommitChangelistDialog2" timestamp="1597659873565">
+    <state x="2492" y="118" key="CommitChangelistDialog2" timestamp="1600853122298">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2492" y="118" key="CommitChangelistDialog2/0.0.1857.1080/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597659873565" />
+    <state x="2492" y="118" key="CommitChangelistDialog2/0.0.1857.1080/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597719139379" />
+    <state x="2492" y="118" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1600853122298" />
     <state x="2129" y="76" key="DiffContextDialog" timestamp="1597628289941">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2129" y="76" key="DiffContextDialog/0.0.1857.1080/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597628289941" />
-    <state x="2472" y="256" key="Vcs.Push.Dialog.v2" timestamp="1597659876938">
+    <state x="2472" y="256" key="Vcs.Push.Dialog.v2" timestamp="1600853124888">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2472" y="256" key="Vcs.Push.Dialog.v2/0.0.1857.1080/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597659876938" />
-    <state x="2674" y="438" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1597717901386">
+    <state x="2472" y="256" key="Vcs.Push.Dialog.v2/0.0.1857.1080/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597719142650" />
+    <state x="2472" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1600853124888" />
+    <state x="2674" y="438" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1597991604138">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2674" y="438" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1857.1080/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597717901386" />
+    <state x="2674" y="438" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597991604138" />
+    <state x="2552" y="277" width="830" height="490" key="find.popup" timestamp="1600856038932">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2552" y="277" width="830" height="490" key="find.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1600856038932" />
   </component>
 </project>
