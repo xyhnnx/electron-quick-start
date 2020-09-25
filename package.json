@@ -4,7 +4,8 @@
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "dist": "electron-builder"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
@@ -14,14 +15,41 @@
     "tutorial",
     "demo"
   ],
+  "build": {
+    "productName":"xyh-test",
+    "appId": "com.xyh.xyhnnx.hahaha",
+    "copyright":"xxxx",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "icon": "build/icons/icon.ico",
+      "target": [
+        {
+          "target": "nsis"
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "build/icons/icon.ico",
+      "uninstallerIcon": "build/icons/icon.ico",
+      "installerHeaderIcon": "build/icons/icon.ico",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "electron-builder-start"
+    }
+  },
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^7.1.7"
+    "electron": "^7.1.7",
+    "electron-builder": "^22.8.1"
   },
   "dependencies": {
     "axios": "0.19.1",
-    "electron-builder": "^22.8.1",
     "puppeteer": "^2.0.0",
     "request": "2.88.0"
   }
