@@ -1,6 +1,7 @@
 <!-- app/view/news/list.tpl -->
 <html>
 <head>
+  <meta charset="utf-8"/>
   <title>美女图片</title>
 </head>
 <style>
@@ -110,7 +111,9 @@
         })
 
         if(count <=50000) {
-          loadImg()
+          setTimeout(() => {
+            loadImg()
+          }, 888)
         } else {
           // let domArr = []
           // arr.forEach(item => {
@@ -125,7 +128,9 @@
         }
       }
       img.onerror = () => {
-        loadImg()
+        setTimeout(() => {
+          loadImg()
+        }, 1111)
       }
 
     }
